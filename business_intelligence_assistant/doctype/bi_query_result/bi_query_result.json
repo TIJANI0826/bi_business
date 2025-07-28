@@ -1,0 +1,128 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:RESULT-{query_reference}-{###}",
+ "creation": "2025-03-25 12:20:31.142753",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "query_reference",
+  "execution_time",
+  "status",
+  "result_data_section",
+  "raw_data",
+  "visualization_section",
+  "visualization_html",
+  "summary_section",
+  "ai_summary",
+  "error_section",
+  "error_message"
+ ],
+ "fields": [
+  {
+   "fieldname": "query_reference",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Query Reference",
+   "options": "BI Query",
+   "reqd": 1
+  },
+  {
+   "fieldname": "execution_time",
+   "fieldtype": "Datetime",
+   "label": "Execution Time",
+   "read_only": 1
+  },
+  {
+   "default": "Success",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Success\nError"
+  },
+  {
+   "fieldname": "result_data_section",
+   "fieldtype": "Section Break",
+   "label": "Result Data"
+  },
+  {
+   "description": "JSON representation of the query result",
+   "fieldname": "raw_data",
+   "fieldtype": "Long Text",
+   "label": "Raw Data",
+   "read_only": 1
+  },
+  {
+   "fieldname": "visualization_section",
+   "fieldtype": "Section Break",
+   "label": "Visualization"
+  },
+  {
+   "fieldname": "visualization_html",
+   "fieldtype": "HTML Editor",
+   "label": "Visualization",
+   "read_only": 1
+  },
+  {
+   "fieldname": "summary_section",
+   "fieldtype": "Section Break",
+   "label": "Summary"
+  },
+  {
+   "description": "AI-generated summary of insights from the data",
+   "fieldname": "ai_summary",
+   "fieldtype": "Text Editor",
+   "label": "AI Summary",
+   "read_only": 1
+  },
+  {
+   "fieldname": "error_section",
+   "fieldtype": "Section Break",
+   "label": "Error Information",
+   "mandatory_depends_on": "eval:doc.status=='Error'"
+  },
+  {
+   "fieldname": "error_message",
+   "fieldtype": "Long Text",
+   "label": "Error Message",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-03-26 12:27:26.540449",
+ "modified_by": "Administrator",
+ "module": "Business Intelligence Assistant",
+ "name": "BI Query Result",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Analytics User",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

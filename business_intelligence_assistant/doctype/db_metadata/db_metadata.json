@@ -1,0 +1,153 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:entity_name",
+ "creation": "2025-03-25 12:49:10.437147",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "section_break_srgj",
+  "entity_name",
+  "entity_type",
+  "data_source",
+  "description",
+  "fields_section",
+  "fields",
+  "relationship_section",
+  "from_entity",
+  "to_entity",
+  "relationship_type",
+  "join_field",
+  "common_filters_section",
+  "common_filters",
+  "sample_queries_section",
+  "sample_queries"
+ ],
+ "fields": [
+  {
+   "fieldname": "entity_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Entity Name",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "depends_on": "eval:doc.entity_type!='Relationship'",
+   "fieldname": "fields",
+   "fieldtype": "Table",
+   "label": "Fields",
+   "options": "DB Metadata Field"
+  },
+  {
+   "fieldname": "entity_type",
+   "fieldtype": "Select",
+   "label": "Entity Type",
+   "options": "Table\nView\nRelationship"
+  },
+  {
+   "fieldname": "data_source",
+   "fieldtype": "Select",
+   "label": "Data Source",
+   "options": "ERPNext\nSplynx"
+  },
+  {
+   "description": "Describe what this entity represents in business terms",
+   "fieldname": "description",
+   "fieldtype": "Text Editor",
+   "label": "Business Description"
+  },
+  {
+   "depends_on": "eval:doc.entity_type!='Relationship'",
+   "fieldname": "section_break_srgj",
+   "fieldtype": "Section Break",
+   "options": "DB Metadata Field"
+  },
+  {
+   "depends_on": "eval:doc.entity_type!='Relationship'",
+   "fieldname": "fields_section",
+   "fieldtype": "Section Break",
+   "label": "Fields"
+  },
+  {
+   "depends_on": "eval:doc.entity_type=='Relationship'",
+   "fieldname": "relationship_section",
+   "fieldtype": "Section Break",
+   "label": "Relationship Information"
+  },
+  {
+   "depends_on": "eval:doc.entity_type=='Relationship'",
+   "fieldname": "from_entity",
+   "fieldtype": "Link",
+   "label": "From Entity",
+   "options": "DB Metadata"
+  },
+  {
+   "depends_on": "eval:doc.entity_type=='Relationship'",
+   "fieldname": "to_entity",
+   "fieldtype": "Link",
+   "label": "To Entity",
+   "options": "DB Metadata"
+  },
+  {
+   "depends_on": "eval:doc.entity_type=='Relationship'",
+   "fieldname": "relationship_type",
+   "fieldtype": "Select",
+   "label": "Relationship Type",
+   "options": "One-to-One\nOne-to-Many\nMany-to-One\nMany-to-Many"
+  },
+  {
+   "depends_on": "eval:doc.entity_type=='Relationship'",
+   "fieldname": "join_field",
+   "fieldtype": "Data",
+   "label": "Join Field"
+  },
+  {
+   "fieldname": "common_filters_section",
+   "fieldtype": "Section Break",
+   "label": "Common Filters"
+  },
+  {
+   "description": "List of common filters used with this entity (one per line)",
+   "fieldname": "common_filters",
+   "fieldtype": "Small Text",
+   "label": "Common Filters"
+  },
+  {
+   "fieldname": "sample_queries_section",
+   "fieldtype": "Section Break",
+   "label": "Sample Queries"
+  },
+  {
+   "description": "Example questions that would query this entity (one per line)",
+   "fieldname": "sample_queries",
+   "fieldtype": "Small Text",
+   "label": "Sample Queries"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-03-26 12:52:30.639953",
+ "modified_by": "Administrator",
+ "module": "Business Intelligence Assistant",
+ "name": "DB Metadata",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

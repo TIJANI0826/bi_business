@@ -1,0 +1,93 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-03-25 12:50:26.729984",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "field_name",
+  "field_type",
+  "description",
+  "is_key",
+  "is_filterable",
+  "related_entity",
+  "common_values",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "field_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Field Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "field_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Field Type",
+   "no_copy": 1,
+   "options": "Text\nNumber\nDate\nDatetime\nBoolean",
+   "print_hide": 1,
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "description": "Business description of this field",
+   "fieldname": "description",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Description",
+   "reqd": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "is_key",
+   "fieldtype": "Check",
+   "label": "Is Key Field"
+  },
+  {
+   "default": "1",
+   "fieldname": "is_filterable",
+   "fieldtype": "Check",
+   "label": "Is Filterable"
+  },
+  {
+   "description": "If this field references another entity",
+   "fieldname": "related_entity",
+   "fieldtype": "Link",
+   "label": "Related Entity",
+   "options": "DB Metadata"
+  },
+  {
+   "description": "List of common values for this field (one per line)",
+   "fieldname": "common_values",
+   "fieldtype": "Small Text",
+   "label": "Common Values"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "DB Metadata Field",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2025-03-25 14:23:11.452862",
+ "modified_by": "Administrator",
+ "module": "Business Intelligence Assistant",
+ "name": "DB Metadata Field",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

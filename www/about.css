@@ -1,0 +1,140 @@
+/* BI Assistant Styles */
+
+/* Navbar button */
+#bi-assistant-btn .fa-bar-chart {
+  color: #1a73e8;
+  font-size: 16px;
+}
+
+/* BI Assistant dialogs */
+.bi-assistant-dialog .modal-dialog {
+  width: 70%;
+  max-width: 900px;
+}
+
+/* Sample query items */
+.sample-query-item {
+  padding: 12px;
+  border: 1px solid #e0e0e0;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.sample-query-item:hover {
+  background-color: #f7fafc;
+  border-color: #c0d0e0;
+}
+
+.sample-query-item h5 {
+  margin-top: 0;
+  color: #1a73e8;
+  font-weight: 500;
+}
+
+/* Results visualization */
+.chart-container {
+  text-align: center;
+  margin: 20px 0;
+  background-color: white;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.chart-container img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+/* Table styling */
+.table-responsive {
+  margin-top: 20px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.table-responsive table {
+  margin-bottom: 0;
+}
+
+.table-responsive table thead th {
+  background-color: #f5f7fa;
+  border-bottom: 2px solid #dce0e5;
+  font-weight: 600;
+  color: #3e4c59;
+}
+
+.table-responsive table tbody tr:nth-child(even) {
+  background-color: #f9fafb;
+}
+
+/* Insights styling */
+.bi-insights-summary {
+  padding: 15px 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  margin-top: 15px;
+  border-left: 4px solid #1a73e8;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.bi-insights-summary p {
+  margin-bottom: 10px;
+  line-height: 1.6;
+}
+
+.bi-insights-summary ul {
+  margin-left: 20px;
+  padding-left: 0;
+}
+
+.bi-insights-summary li {
+  margin-bottom: 5px;
+}
+
+/* Download buttons */
+.download-csv, .download-excel {
+  margin-right: 10px;
+}
+
+/* Query list view enhancements */
+.bi-query-status {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 10px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.bi-query-status-draft {
+  background-color: #f2f2f2;
+  color: #555;
+}
+
+.bi-query-status-executed {
+  background-color: #dcffe4;
+  color: #0a6b26;
+}
+
+.bi-query-status-failed {
+  background-color: #ffe5e5;
+  color: #b30000;
+}
+
+/* Responsive adjustments */
+@media (max-width: 767px) {
+  .bi-assistant-dialog .modal-dialog {
+    width: 95%;
+    margin: 10px auto;
+  }
+  
+  .chart-container {
+    padding: 10px;
+    margin: 10px 0;
+  }
+}

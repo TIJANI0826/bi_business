@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BI Assistant - ERPNext</title>
+    
+    <!-- Internal CSS -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 20px;
+        }
+        .bi-assistant-container {
+            text-align: center;
+        }
+        #bi-assistant-btn {
+            font-size: 16px;
+            padding: 10px 20px;
+            margin-bottom: 20px;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            width: 500px;
+        }
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+        }
+        .close {
+            cursor: pointer;
+            font-size: 20px;
+        }
+        .loading {
+            display: none;
+            margin-top: 10px;
+            color: blue;
+        }
+        .table-container {
+            margin-top: 15px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+    </style>
+    
+    <script src="/assets/frappe/js/frappe.min.js"></script>
+</head>
+<body>
+    <div class="bi-assistant-container">
+        <button id="bi-assistant-btn" class="btn btn-primary">
+            <i class="fa fa-bar-chart"></i> Open BI Assistant
+        </button>
+        
+        <!-- Modal -->
+        <div id="bi-assistant-modal" class="modal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">BI Assistant</h5>
+                        <span class="close" aria-label="Close">&times;</span>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="query-text">Ask a Business Question</label>
+                            <textarea id="query-text" class="form-control" placeholder="Example: What were our top 10 products by sales volume last quarter?"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="data-source">Select Data Source</label>
+                            <select id="data-source" class="form-control">
+                                <option value="ERPNext">ERPNext</option>
+                                <option value="Splynx">Splynx</option>
+                                <option value="Cross System">Cross System</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="date-range">Select Date Range</label>
+                            <select id="date-range" class="form-control">
+                                <option value="Last 30 Days">Last 30 Days</option>
+                                <option value="Last Quarter">Last Quarter</option>
+                                <option value="Last Year">Last Year</option>
+                                <option value="This Month">This Month</option>
+                                <option value="This Quarter">This Quarter</option>
+                                <option value="This Year">This Year</option>
+                                <option value="All Time">All Time</option>
+                                <option value="Custom">Custom</option>
+                            </select>
+                        </div>
+                        <div class="form-group" id="custom-date-range" style="display: none;">
+                            <label for="custom-from-date">From Date</label>
+                            <input type="date" id="custom-from-date" class="form-control">
+                            <label for="custom-to-date">To Date</label>
+                            <input type="date" id="custom-to-date" class="form-control">
+                        </div>
+                        <button id="execute-query" class="btn btn-success">Run Query</button>
+                        <p class="loading" id="loading-text">Fetching data, please wait...</p>
+                    </div>
+                    <div class="modal-footer">
+                        <div id="query-results" class="table-container"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Open Modal
+        document.getElementById("bi-assistant-btn").addEventListener("click", function() {
+            document.getElementById("bi-assistant-modal").style.display = "flex";
+        });
+
+        // Close Modal
+        document.querySelector(".close").addEventListener("click", function() {
+            document.getElementById("bi-assistant-modal").style.display = "none";
+        });
+
+        // Hide modal when clicking outside
+        window.onclick = function(event) {
+            let modal = document.getElementById("bi-assistant-modal");
+            if (event.target === modal) {
+                modal.style.display = "none";
+            }
+        };
+
+        // Show/hide custom date range fields
+        document.getElementById("date-range").addEventListener("change", function() {
+            document.getElementById("custom-date-range").style.display = this.value === "Custom" ? "block" : "none";
+        });
+
+        // Run Query
+        document.getElementById("execute-query").addEventListener("click", async function() {
+            let queryText = document.getElementById("query-text").value;
+            let dataSource = document.getElementById("data-source").value;
+            let dateRange = document.getElementById("date-range").value;
+            let fromDate = document.getElementById("custom-from-date").value;
+            let toDate = document.getElementById("custom-to-date").value;
+            let loadingText = document.getElementById("loading-text");
+
+            if (!queryText) {
+                alert("Please enter a query.");
+                return;
+            }
+
+            if (dateRange === "Custom" && (!fromDate || !toDate)) {
+                alert("Please select both 'From' and 'To' dates for the custom range.");
+                return;
+            }
+
+            loadingText.style.display = "block";
+
+            let response = await frappe.call({
+                method: "bi_assistant.api.create_and_execute_query",
+                args: {
+                    query_text: queryText,
+                    data_source: dataSource,
+                    date_range: dateRange,
+                    custom_from_date: fromDate,
+                    custom_to_date: toDate
+                },
+            });
+
+            loadingText.style.display = "none";
+
+            let resultContainer = document.getElementById("query-results");
+            if (response.message.status === "Success") {
+                resultContainer.innerHTML = response.message.visualization;
+            } else {
+                alert("Query execution failed: " + response.message.message);
+            }
+        });
+    </script>
+</body>
+</html>

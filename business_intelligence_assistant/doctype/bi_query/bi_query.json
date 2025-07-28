@@ -1,0 +1,172 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:query_name",
+ "creation": "2025-03-25 11:54:59.683025",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "section_break_vohi",
+  "query_name",
+  "query_text",
+  "user",
+  "data_source_section",
+  "data_source_column",
+  "data_source",
+  "date_range",
+  "custom_from_date",
+  "custom_to_date",
+  "query_details_section",
+  "generated_sql",
+  "status",
+  "last_run",
+  "visualization_section",
+  "visualization_type",
+  "result_reference"
+ ],
+ "fields": [
+  {
+   "fieldname": "query_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Query Name",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "description": "Ask a question about your business data",
+   "fieldname": "query_text",
+   "fieldtype": "Text Editor",
+   "in_list_view": 1,
+   "label": "Question",
+   "reqd": 1
+  },
+  {
+   "default": "user",
+   "fieldname": "user",
+   "fieldtype": "Link",
+   "label": "Created By",
+   "options": "User",
+   "read_only": 1
+  },
+  {
+   "fieldname": "data_source_section",
+   "fieldtype": "Section Break",
+   "label": "Data Source"
+  },
+  {
+   "default": "ERPNext",
+   "fieldname": "data_source",
+   "fieldtype": "Select",
+   "label": "Data Source",
+   "options": "ERPNext\nSplynx\nCross System"
+  },
+  {
+   "default": "Last 30 Days",
+   "fieldname": "date_range",
+   "fieldtype": "Select",
+   "label": "Date Range",
+   "options": "Last 30 Days\nLast Quarter\nLast Year\nThis Month\nThis Quarter\nThis Year\nAll Time\nCustom"
+  },
+  {
+   "depends_on": "eval:doc.date_range=='Custom'",
+   "fieldname": "custom_from_date",
+   "fieldtype": "Date",
+   "label": "From Date"
+  },
+  {
+   "fieldname": "custom_to_date",
+   "fieldtype": "Date",
+   "label": "To Date"
+  },
+  {
+   "fieldname": "query_details_section",
+   "fieldtype": "Section Break",
+   "label": "Query Details"
+  },
+  {
+   "description": "SQL query generated from the natural language question",
+   "fieldname": "generated_sql",
+   "fieldtype": "Code",
+   "label": "Generated SQL",
+   "options": "SQL",
+   "read_only": 1
+  },
+  {
+   "default": "Draft",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Draft\nExecuted\nFailed"
+  },
+  {
+   "fieldname": "last_run",
+   "fieldtype": "Datetime",
+   "label": "Last Run",
+   "read_only": 1
+  },
+  {
+   "fieldname": "visualization_section",
+   "fieldtype": "Section Break",
+   "label": "Visualization"
+  },
+  {
+   "default": "Auto",
+   "fieldname": "visualization_type",
+   "fieldtype": "Select",
+   "label": "Visualization Type",
+   "options": "Auto\nBar Chart\nLine Chart\nPie Chart\nTable"
+  },
+  {
+   "fieldname": "result_reference",
+   "fieldtype": "Link",
+   "label": "Result Reference",
+   "options": "BI Query Result",
+   "read_only": 1
+  },
+  {
+   "fieldname": "data_source_column",
+   "fieldtype": "Column Break",
+   "label": "Data Source"
+  },
+  {
+   "fieldname": "section_break_vohi",
+   "fieldtype": "Section Break"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-03-26 12:25:54.378013",
+ "modified_by": "Administrator",
+ "module": "Business Intelligence Assistant",
+ "name": "BI Query",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Analytics User",
+   "share": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
